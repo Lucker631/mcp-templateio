@@ -140,6 +140,8 @@ Add this configuration to your Claude Desktop config file:
 
 ### After Publishing
 
+GET YOUR API KEY HERE: https://app.templated.io/api-integration?template=4ae9a86b-4ecd-44ee-aebd-7c5a49c16969
+
 Add this configuration to your Claude Desktop config file:
 
 **MacOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
@@ -149,9 +151,12 @@ Add this configuration to your Claude Desktop config file:
 {
   "mcpServers": {
     "mcp-templateio": {
-      "command": "npx",
-      "args": ["mcp-templateio"]
-    }
+      "command": "node",
+      "args": [
+        "C:\\Users\\alex0\\Documents\\AA_CodeAndScripts\\modelcontextprotocol\\mcp-templateio\\dist\\index.js"
+      ],
+      "env": {"TEMPLATED_API_KEY":"YOUR-API-KEY-HERE"}
+    },
   }
 }
 ```
