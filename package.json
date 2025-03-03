@@ -1,0 +1,26 @@
+{
+  "name": "mcp-templateio",
+  "version": "0.0.1",
+  "description": "mcp-templateio MCP server",
+  "type": "module",
+  "bin": {
+    "mcp-templateio": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "mcp-build",
+    "prepare": "npm run build",
+    "watch": "tsc --watch",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "mcp-framework": "^0.1.25",
+    "undici": "^7.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "typescript": "^5.3.3"
+  }
+}
