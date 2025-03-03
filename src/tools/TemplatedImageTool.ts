@@ -1,4 +1,5 @@
 import { MCPTool } from "mcp-framework";
+import { ImageContent } from "mcp-framework/dist/transports/utils/image-handler.js";
 import { z } from "zod";
 
 interface ImageGenInput {
@@ -9,8 +10,8 @@ interface ImageGenInput {
 }
 
 class TemplatedImageTool extends MCPTool<ImageGenInput> {
-  name = "templated-image-generator2";
-  description = "Generates an image using Templated.io with a given template and dynamic assets.";
+  name = "templated-image-generator";
+  description = "Generates an image using Templated.io with a given template and dynamic assets. This returns a base64 image that should be displayed in the client";
 
   schema = {
     templateId: {
@@ -36,10 +37,9 @@ class TemplatedImageTool extends MCPTool<ImageGenInput> {
     photoBgImageUrl: string;
     bgYellowImageUrl: string;
     buildText: string;
-  }): Promise<any> {
+  }): Promise<ImageContent> {
     const { templateId, photoBgImageUrl, bgYellowImageUrl, buildText } = params;
 
-    // Construct the request payload with dynamic values
     const requestBody = {
       template: templateId,
       layers: {
@@ -56,24 +56,35 @@ class TemplatedImageTool extends MCPTool<ImageGenInput> {
       }
     };
 
-    // Send the POST request to Templated API
     const response = await fetch('https://api.templated.io/v1/render', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.TEMPLATED_API_KEY}`  // Replace API_KEY with your actual API key
+        'Authorization': `Bearer ${process.env.TEMPLATED_API_KEY}` 
       },
       body: JSON.stringify(requestBody)
     });
 
     if (!response.ok) {
-      // Handle HTTP errors
       const errorText = await response.text();
       throw new Error(`Templated API request failed: ${response.status} ${response.statusText} - ${errorText}`);
     }
 
-    // Return the JSON result (contains fields like id, url, status, etc.)
-    return await response.json();
+    const result = await response.json();
+    
+    const imageResponse = await fetch(result.url);
+    if (!imageResponse.ok) {
+      throw new Error(`Failed to download image: ${imageResponse.status} ${imageResponse.statusText}`);
+    }
+
+    const imageBuffer = await imageResponse.arrayBuffer();
+    const base64Image = Buffer.from(imageBuffer).toString('base64');
+
+    return {
+      type: "image",
+      data: base64Image,
+      mimeType: "image/jpeg" 
+    };
   }
 }
 
