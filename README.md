@@ -2,6 +2,10 @@
 
 A Model Context Protocol (MCP) server built with mcp-framework that provides an image generation tool using Templated.io.
 
+<a href="https://glama.ai/mcp/servers/p9zgbaq5ll">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/p9zgbaq5ll/badge" alt="TemplateIO MCP server" />
+</a>
+
 ## Overview
 
 This template provides a starting point for building MCP servers with custom tools. It includes an example tool and instructions on how to add more tools, develop them, and publish them to npm. This README will guide you through the process of setting up, developing, and deploying your own MCP server.
