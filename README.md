@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/lucker631-mcp-templateio-badge.png)](https://mseep.ai/app/lucker631-mcp-templateio)
+
 # MCP TemplateIO - Image Generation Tool
 
 A Model Context Protocol (MCP) server built with mcp-framework that provides an image generation tool using Templated.io.
