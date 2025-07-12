@@ -1,6 +1,8 @@
 [![MseeP.ai Security Assessment Badge](https://mseep.net/pr/lucker631-mcp-templateio-badge.png)](https://mseep.ai/app/lucker631-mcp-templateio)
 
 # MCP TemplateIO - Image Generation Tool
+[![smithery badge](https://smithery.ai/badge/@Lucker631/mcp-templateio)](https://smithery.ai/server/@Lucker631/mcp-templateio)
+
 
 A Model Context Protocol (MCP) server built with mcp-framework that provides an image generation tool using Templated.io.
 
@@ -121,6 +123,14 @@ mcp add tool file-handler
 After publishing, users can add it to their claude desktop client (read below) or run it with npx
 
 ## Using with Claude Desktop
+
+### Installing via Smithery
+
+To install TemplateIO for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@Lucker631/mcp-templateio):
+
+```bash
+npx -y @smithery/cli install @Lucker631/mcp-templateio --client claude
+```
 
 ### Local Development
 
